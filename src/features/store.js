@@ -1,5 +1,38 @@
-import {createStore} from 'redux'
-import rootReducer from '../reducer'
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-
-export default store
+/**
+ * Store
+ */
+ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+ import createSagaMiddleware from 'redux-saga';
+ import { createInjectorsEnhancer } from 'redux-injectors';
+ import { routerMiddleware } from 'connected-react-router';
+ import createReducer from './reducers/rootReducer';
+ import rootSaga from './saga';
+ import history from '../utils/history';
+ 
+ export default function configureAppStore(initialState = {}) {
+     const reduxSagaMonitorOptions = {};
+     const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
+ 
+     const { run: runSaga } = sagaMiddleware;
+ 
+     const middleWares = [ sagaMiddleware, routerMiddleware(history) ];
+ 
+     const enhancers = [
+         createInjectorsEnhancer({
+             createReducer,
+             runSaga
+         })
+     ];
+ 
+     const store = configureStore({
+         reducer: createReducer(),
+         middleware: [ ...getDefaultMiddleware(), ...middleWares ],
+         preloadedState: initialState,
+         devTools:'develop',
+         enhancers
+     });
+ 
+     sagaMiddleware.run(rootSaga);
+     return store;
+ }
+ 
