@@ -2,25 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import 'antd/dist/antd.min.css';
+
 import './index.css';
 import './app/global-styles.scss';
-
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-import 'antd/dist/antd.min.css';
 import configureStore from './features/store';
+
 const store = configureStore({});
 let profile = {
-  local:{isSignedIn:false},
-  data : {userInfo:{}}
-}
+	local: { isSignedIn: false },
+	data: { userInfo: {} }
+};
 ReactDOM.render(
 	<Provider store={store}>
 		<Router>
-			<App profile={profile}/>
+			<App profile={profile} />
 		</Router>
-
 	</Provider>,
 	document.getElementById('root')
 );
