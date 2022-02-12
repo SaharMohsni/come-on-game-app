@@ -4,11 +4,8 @@ import './authentication.scss'
 
 const Authentication = () => {
     return (
-		<div className="authentication global-page-padding-left-right global-flex-h-center-v-center">
+		<div className="authentication global-flex-h-center-v-center">
 			<LoginForm />
-			<div>
-				
-			</div>
 		</div>
 	);
 }

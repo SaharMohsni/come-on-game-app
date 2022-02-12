@@ -1,4 +1,4 @@
-import { takeEvery, all, takeLatest, put, call } from 'redux-saga/effects';
+import { takeEvery, takeLatest, put, call } from 'redux-saga/effects';
 import * as api from '../services/auth.service';
 import ActionTypes from '../constants/profile.constants';
 
@@ -68,6 +68,6 @@ export function* clearReducerLocalWatcher() {
 	yield takeEvery(ActionTypes.CLEAR_REDUCER_LOCAL.request, clearReducerLocal);
 }
 
-export default function* profileSaga() {
-	yield all([ loginUserWatcher(), logoutUserWatcher(), clearLoginFormErrorsWatcher(), clearReducerLocalWatcher() ]);
-}
+// export default function* profileSaga() {
+// 	yield all([ loginUserWatcher(), logoutUserWatcher(), clearLoginFormErrorsWatcher(), clearReducerLocalWatcher() ]);
+// }

@@ -1,8 +1,11 @@
 @import '../../app/_mixins';
 
-.authentication {
-	width: 100%;
+.game-list-container {
+	width: 80%;
 	height: calc(100vh - 255px);
+	background-color: white;
+	margin: 0 9%;
+
 	/* *** responsive design for small screen *** */
 	@include respond(small) {
 		padding: 0 8%;

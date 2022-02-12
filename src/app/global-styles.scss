@@ -186,20 +186,6 @@ body {
 	padding: 20px;
 }
 
-.custom-button-on-mobile button {
-	min-width: 65px;
-	padding: 10px !important;
-	border: 1.17666px solid #1ea4ce !important;
-	background-color: unset !important;
-	color: #1ea4ce !important;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.action-buttons button {
-	border: solid;
-	min-width: 80px;
-}
 .global-scroll {
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -219,11 +205,10 @@ body {
 	background-color: #e0e0e0;
 	border-radius: 50px 50px;
 }
+.global-required-field {
+	border-color: #c7163c !important;
 
-.ant-skeleton-avatar {
-	width: 100% !important;
-	margin-bottom: 10px;
-}
-.ant-skeleton-header {
-	padding-right: unset !important;
+	.ant-select-selection {
+		border-color: #c7163c !important;
+	}
 }
