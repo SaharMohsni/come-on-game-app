@@ -11,14 +11,11 @@ import reportWebVitals from './reportWebVitals';
 import configureStore from './features/store';
 
 const store = configureStore({});
-let profile = {
-	local: { isSignedIn: false },
-	data: { userInfo: {} }
-};
+
 ReactDOM.render(
 	<Provider store={store}>
 		<Router>
-			<App profile={profile} />
+			<App />
 		</Router>
 	</Provider>,
 	document.getElementById('root')
