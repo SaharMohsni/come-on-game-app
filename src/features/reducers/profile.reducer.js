@@ -52,11 +52,11 @@ const profileReducer = (state = initialState, action) =>
 			//Logout
 			// case ActionTypes.LOGOUT_USER.request:
 			// 	draft.local.loading.logoutLoading = true;
-			// 	draft.local.errors.logoutErrors = {};
+			// 	draft.local.errors.logoutErrors = "";
 			// 	break;
 			// case ActionTypes.LOGOUT_USER.success:
 			// 	draft.local.loading.logoutLoading = false;
-			// 	localStorage.setItem('token', '');
+			// 	 localStorage.removeItem('token');
 			// 	window.location = setUrlPath(window.location.href, '/');
 
 			// 	draft.local.isSignedIn = false;
@@ -64,7 +64,7 @@ const profileReducer = (state = initialState, action) =>
 			// 	break;
 			// case ActionTypes.LOGOUT_USER.failure:
 			// 	draft.local.loading.logoutLoading = false;
-			// 	draft.local.errors.logoutErrors = action.objectErrors;
+			// 	draft.local.errors.logoutErrors = action.e.response.data.error;
 			// 	break;
 
 			case ActionTypes.CLEAR_LOGIN_FORM_ERRORS.success:
