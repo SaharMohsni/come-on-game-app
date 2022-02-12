@@ -12,3 +12,10 @@ export const requestHeaderWithoutToken = () => {
 		}
 	};
 };
+
+export const requestHeader = (options) => ({
+	headers: {
+		// 'Access-Control-Allow-Origin': '*',
+		...options
+	}
+});
