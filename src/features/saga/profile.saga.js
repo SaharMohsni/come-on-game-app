@@ -67,7 +67,3 @@ export function* clearReducerLocal(action) {
 export function* clearReducerLocalWatcher() {
 	yield takeEvery(ActionTypes.CLEAR_REDUCER_LOCAL.request, clearReducerLocal);
 }
-
-// export default function* profileSaga() {
-// 	yield all([ loginUserWatcher(), logoutUserWatcher(), clearLoginFormErrorsWatcher(), clearReducerLocalWatcher() ]);
-// }
