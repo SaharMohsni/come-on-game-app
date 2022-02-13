@@ -3,8 +3,9 @@ import React, { useEffect } from 'react';
 // import { selectUserInfo } from '../../features/selectors/profile.selectors';
 import { useDispatch } from 'react-redux';
 import { fetchGames } from '../../features/actions/games.actions';
+import GamesPagesHeader from '../../shared/components/gamesPagesHeader';
 
-import './game-list-container.scss';
+import './game-list.scss';
 
 const GameList = () => {
 	const dispatch = useDispatch();
@@ -12,7 +13,12 @@ const GameList = () => {
 		dispatch(fetchGames());
 	}, []);
 
-	return <div className="game-list-container  global-flex-h-center-v-center">game List</div>;
+	return (
+		<div className="game-list-container  global-flex-h-center-v-center">
+			<GamesPagesHeader />
+			game List
+		</div>
+	);
 };
 
 export default GameList;

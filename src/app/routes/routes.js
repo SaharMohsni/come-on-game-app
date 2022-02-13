@@ -1,6 +1,6 @@
-import Authentication from '../../pages/authentication/Authentication';
-import GamesList from '../../pages/gamesList/GamesList';
-import Game from '../../pages/game/Game';
+import Authentication from '../../pages/authentication';
+import GamesList from '../../pages/gamesList';
+import Game from '../../pages/game';
 export default {
 	LOGIN_OR_REGISTER: {
 		path: '/',

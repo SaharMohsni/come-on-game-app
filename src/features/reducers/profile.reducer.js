@@ -13,11 +13,13 @@ const initialLocal = {
 	isSignedIn: hasToken(),
 	loading: {
 		loginLoading: false,
-		logoutLoading: false
+		logoutLoading: false,
+		getPlayerDataFromTokenLoading: false
 	},
 	errors: {
 		loginErrors: '',
-		logoutErrors: ''
+		logoutErrors: '',
+		getPlayerDataFromTokenErrors: ''
 	}
 };
 
@@ -69,6 +71,19 @@ const profileReducer = (state = initialState, action) =>
 
 			case ActionTypes.CLEAR_LOGIN_FORM_ERRORS.success:
 				draft.local.errors.loginErrors = '';
+				break;
+			//Get player data from token
+			case ActionTypes.GET_PLAYER_DATA_FROM_TOKEN.request:
+				draft.local.loading.getPlayerDataFromTokenLoading = true;
+				draft.local.errors.getPlayerDataFromTokenErrors = '';
+				break;
+			case ActionTypes.GET_PLAYER_DATA_FROM_TOKEN.success:
+				draft.local.loading.getPlayerDataFromTokenLoading = false;
+				draft.data.userInfo = action.data.player;
+				break;
+			case ActionTypes.GET_PLAYER_DATA_FROM_TOKEN.failure:
+				draft.local.loading.getPlayerDataFromTokenLoading = false;
+				draft.local.errors.getPlayerDataFromTokenErrors = action.e.response.data.error;
 				break;
 
 			//Clear reducer

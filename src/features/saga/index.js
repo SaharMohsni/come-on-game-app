@@ -6,6 +6,7 @@ import { fetchGamesWatcher } from './games.saga';
 import {
 	clearLoginFormErrorsWatcher,
 	clearReducerLocalWatcher,
+	getPlayerDataFromTokenWatcher,
 	loginUserWatcher,
 	logoutUserWatcher
 } from './profile.saga';
@@ -16,6 +17,7 @@ export default function* rootSaga() {
 		loginUserWatcher(),
 		logoutUserWatcher(),
 		clearLoginFormErrorsWatcher(),
+		getPlayerDataFromTokenWatcher(),
 		clearReducerLocalWatcher(),
 		fetchGamesWatcher()
 	]);

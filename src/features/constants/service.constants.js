@@ -10,6 +10,9 @@ const URL = {
 		loginUser: '/login',
 		logoutUser: '/logout'
 	},
+	player: {
+		getConnectedPlayer: '/connected-player'
+	},
 	games: {
 		fetchGames: () => `/games`
 	}

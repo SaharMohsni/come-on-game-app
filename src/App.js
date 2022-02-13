@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 import './App.scss';
@@ -28,11 +27,5 @@ function App() {
 
 	return <div className="app">{renderLayout()}</div>;
 }
-App.propTypes = {
-	/**
-     * Current Profile
-  */
-	profile: PropTypes.object.isRequired
-};
 
 export default App;

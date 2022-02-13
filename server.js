@@ -1,7 +1,9 @@
 /* eslint-disable no-undef */
+const fs = require('fs');
 const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('./db.json');
+const playersDb = JSON.parse(fs.readFileSync('./playersDb.json', 'UTF-8'));
 const bodyParser = require('body-parser');
 const middlewares = jsonServer.defaults();
 const jwt = require('jsonwebtoken');
@@ -12,7 +14,7 @@ server.use(jsonServer.bodyParser);
 const db = router.db.getState();
 const games = db.games;
 const categories = db.categories;
-const players = db.players;
+const players = playersDb.players;
 const SECRET_KEY = '123456789';
 const expiresIn = '5h'; // token expiration delay
 
@@ -73,6 +75,50 @@ server.post('/logout', (req, res) => {
 		error: 'Username do not match!'
 	});
 });
+
+// Get Connected player data
+server.post('/connected-player', (req, res) => {
+	var username = req.body.username;
+	const player = Object.assign({}, players[username]);
+	if (player) {
+		res.status(200).json({
+			status: 'success',
+			player
+		});
+		return;
+	}
+	res.status(400).json({
+		status: 'fail',
+		error: 'missing or invalid token'
+	});
+});
+
+// fs.readFile('./playersDb.json', (err, data) => {
+// 	if (err) {
+// 		const status = 401;
+// 		const message = err;
+// 		res.status(status).json({ status, message });
+// 		return;
+// 	}
+
+// 	// Get current users data
+// 	var playersList = JSON.parse(data.toString());
+
+// 	// Get the id of last user
+// 	var last_item_id = data.users[data.users.length - 1].id;
+
+// 	//Add new user
+// 	data.users.push({ id: last_item_id + 1, email: email, password: password }); //add some data
+// 	var writeData = fs.writeFile('./users.json', JSON.stringify(data), (err, result) => {
+// 		// WRITE
+// 		if (err) {
+// 			const status = 401;
+// 			const message = err;
+// 			res.status(status).json({ status, message });
+// 			return;
+// 		}
+// 	});
+// });
 
 server.use(router);
 server.listen(3001, () => {

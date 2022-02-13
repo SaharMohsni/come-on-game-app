@@ -51,6 +51,22 @@ export function* clearLoginFormErrors(action) {
 export function* clearLoginFormErrorsWatcher() {
 	yield takeEvery(ActionTypes.CLEAR_LOGIN_FORM_ERRORS.request, clearLoginFormErrors);
 }
+//Get player Data from token
+export function* getPlayerDataFromToken(action) {
+	try {
+		const results = yield call(api.getPlayerDataFromToken, action.payload);
+		yield put({
+			type: ActionTypes.GET_PLAYER_DATA_FROM_TOKEN.success,
+			data: results
+		});
+	} catch (e) {
+		yield put({ type: ActionTypes.GET_PLAYER_DATA_FROM_TOKEN.failure, e });
+	}
+}
+
+export function* getPlayerDataFromTokenWatcher() {
+	yield takeEvery(ActionTypes.GET_PLAYER_DATA_FROM_TOKEN.request, getPlayerDataFromToken);
+}
 
 //Clear reducer local
 export function* clearReducerLocal(action) {
