@@ -1,0 +1,8 @@
+@import '../../app/_mixins';
+.games-list {
+	margin-top: 50px;
+	&__title {
+		font-weight: 700;
+		margin-bottom: 0 !important;
+	}
+}

@@ -1,0 +1,12 @@
+@import '../../../app/_mixins';
+
+.games-pages-header {
+	&__data-container {
+		&__player-details {
+			margin-left: 10px;
+		}
+	}
+	&__logout-button {
+		margin-top: 20px;
+	}
+}

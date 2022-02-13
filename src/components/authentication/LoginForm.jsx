@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { UserOutlined, LockOutlined, QuestionCircleOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, RightOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import './login-form.scss';
 import { clearLoginFormErrors, loginUser } from '../../features/actions/profile.actions';
 import { selectLoginErrors } from '../../features/selectors/profile.selectors';
@@ -58,7 +58,7 @@ const LoginForm = () => {
 
 				<Form.Item>
 					<Button type="primary" htmlType="submit" className="login-form-button">
-						Log in
+						Log in <RightOutlined />
 					</Button>
 					Or <a href="">register now!</a>
 				</Form.Item>

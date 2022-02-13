@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import GameList from '../../pages/gamesList';
-import Game from '../../pages/game';
+import GameList from '../../pages/gamesListPage';
+import Game from '../../pages/gamePage';
 import Layout from '../Layout';
 import routes from './routes';
 import { setUrlPath } from '../../utils/url.helper';

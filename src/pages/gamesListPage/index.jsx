@@ -1,24 +1,24 @@
 import React, { useEffect } from 'react';
-// import { useSelector } from 'react-redux';
-// import { selectUserInfo } from '../../features/selectors/profile.selectors';
+
 import { useDispatch } from 'react-redux';
+import GamesList from '../../components/gamesList';
 import { fetchGames } from '../../features/actions/games.actions';
 import GamesPagesHeader from '../../shared/components/gamesPagesHeader';
 
-import './game-list.scss';
+import './game-list-page.scss';
 
-const GameList = () => {
+const GameListPage = () => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(fetchGames());
 	}, []);
 
 	return (
-		<div className="game-list-container  global-flex-h-center-v-center">
+		<div className="game-list-page-container">
 			<GamesPagesHeader />
-			game List
+			<GamesList />
 		</div>
 	);
 };
 
-export default GameList;
+export default GameListPage;
