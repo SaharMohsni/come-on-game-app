@@ -1,12 +1,34 @@
 import React from 'react';
-import { loadGame } from '../../features/services/games.service';
-// import './example.scss'
+import { Button } from 'antd';
+import { LeftOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+// import { loadGame } from '../../features/services/games.service';
+import routes from '../../app/routes/routes';
+import './game-page.scss';
+import { selectLaunchedGame } from '../../features/selectors/games.selectors';
+// import { getURLCleanPath } from '../../utils/url.helper';
 const GamePage = () => {
-	const game = loadGame('starburst');
-	console.log('🚀 ~ file: index.jsx ~ line 7 ~ GamePage ~ game', game);
+	const navigate = useNavigate();
+	// const location = useLocation();
+	const launchedGame = useSelector(selectLaunchedGame);
+
+	const handleGoBack = () => navigate(routes.GAMES_LIST.path);
+
+	// const game = loadGame(getURLCleanPath(location.pathname));
 	return (
-		<div className="game-page global-page-css  global-flex-h-center-v-center">
-			<div id="game-launch" />
+		<div className="game-page global-page-css ">
+			<div className="global-button">
+				<Button icon={<LeftOutlined />} onClick={() => handleGoBack()}>
+					Back to games list
+				</Button>
+			</div>
+			<div id="game-launch" className="game-page__launched-game" />
+			<div className="game-page__details">
+				<div className="game-page__details__name">{launchedGame.name}</div>
+				<p className="game-page__details__description">{launchedGame.description}</p>
+			</div>
 		</div>
 	);
 };

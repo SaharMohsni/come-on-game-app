@@ -3,8 +3,12 @@
 .login-form-container {
 	background-color: white;
 	width: 30%;
-	height: 70%;
+	height: 60%;
 	box-shadow: 10px 10px 10px 10px;
+	/* *** responsive design for large screen *** */
+	@include respond(large) {
+		height: 50%;
+	}
 	/* *** responsive design for medium screen *** */
 	@include respond(medium) {
 		width: 40%;

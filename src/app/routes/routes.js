@@ -11,8 +11,8 @@ export default {
 		component: GamesList
 	},
 	GAME: {
-		path: '/games-list/:name',
-		linkPath: (name) => `/games-list/${name}`,
+		path: '/games-list/:code',
+		linkPath: (code) => `/games-list/${code}`,
 		component: GamePage
 	}
 };

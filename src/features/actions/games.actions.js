@@ -12,3 +12,7 @@ export const fetchGames = () => {
 export const fetchCategories = () => {
 	return action(ActionTypes.FETCH_CATEGORIES.request);
 };
+
+export const getGameToLaunch = (payload) => {
+	return action(ActionTypes.GET_GAME_TO_LAUNCH.request, payload);
+};

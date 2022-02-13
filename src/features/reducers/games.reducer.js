@@ -6,8 +6,10 @@
  */
 import produce from 'immer';
 import ActionTypes from '../constants/games.constants';
+import { getGameToLaunchData } from './games.reducer.helper';
 
 const initialLocal = {
+	launchedGame: {},
 	loading: {
 		fetchGamesLoading: false,
 		fetchCategoriesLoading: false
@@ -55,6 +57,11 @@ const gamesReducer = (state = initialState, action) =>
 			case ActionTypes.FETCH_CATEGORIES.failure:
 				draft.local.loading.fetchCategoriesLoading = false;
 				draft.local.errors.fetchCategoriesErrors = action.e.response.data.error;
+				break;
+			//Get game to launch
+			case ActionTypes.GET_GAME_TO_LAUNCH.success:
+				draft.local.loading.fetchCategoriesLoading = false;
+				draft.local.launchedGame = getGameToLaunchData(state.data.gamesList, action.payload);
 				break;
 		}
 	});

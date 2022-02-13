@@ -32,7 +32,7 @@
 				overflow-x: scroll;
 				scrollbar-color: rgb(104, 172, 3) transparent;
 				scrollbar-width: thin;
-
+				padding: 0;
 				&::-webkit-scrollbar {
 					width: 5px;
 					height: 5px !important;

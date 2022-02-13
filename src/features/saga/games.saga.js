@@ -1,4 +1,4 @@
-import { takeLatest, put, call } from 'redux-saga/effects';
+import { put, call, takeEvery } from 'redux-saga/effects';
 import * as api from '../services/games.service';
 import ActionTypes from '../constants/games.constants';
 
@@ -16,7 +16,7 @@ export function* fetchGames() {
 }
 
 export function* fetchGamesWatcher() {
-	yield takeLatest(ActionTypes.FETCH_GAMES.request, fetchGames);
+	yield takeEvery(ActionTypes.FETCH_GAMES.request, fetchGames);
 }
 
 //Fetch categories
@@ -33,5 +33,21 @@ export function* fetchCategories() {
 }
 
 export function* fetchCategoriesWatcher() {
-	yield takeLatest(ActionTypes.FETCH_CATEGORIES.request, fetchCategories);
+	yield takeEvery(ActionTypes.FETCH_CATEGORIES.request, fetchCategories);
+}
+
+// Get game to launch
+export function* getGameToLaunch(action) {
+	try {
+		yield put({
+			type: ActionTypes.GET_GAME_TO_LAUNCH.success,
+			payload: action.payload
+		});
+	} catch (e) {
+		yield put({ type: ActionTypes.GET_GAME_TO_LAUNCH.failure, e });
+	}
+}
+
+export function* getGameToLaunchWatcher() {
+	yield takeEvery(ActionTypes.GET_GAME_TO_LAUNCH.request, getGameToLaunch);
 }

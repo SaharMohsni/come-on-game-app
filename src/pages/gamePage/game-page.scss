@@ -1,2 +1,20 @@
+@import '../../app/_mixins';
+
 .game-page {
+	&__launched-game {
+		margin-top: 50px;
+		border: solid;
+		min-height: 500px;
+	}
+	&__details {
+		&__name {
+			font-weight: 700;
+			@include fontSize(22px);
+			/* *** responsive design special breakpoint *** */
+			@media (min-width: 320px) and (max-width: 550px) {
+				margin-top: 10px;
+				@include fontSize(18px);
+			}
+		}
+	}
 }

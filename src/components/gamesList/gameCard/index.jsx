@@ -4,13 +4,20 @@ import PropTypes from 'prop-types';
 import { Button } from 'antd';
 import { RightOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import './game-card.scss';
 import routes from '../../../app/routes/routes';
+import { getGameToLaunch } from '../../../features/actions/games.actions';
 const GameCard = ({ game }) => {
-	const { icon, name, description } = game;
+	const dispatch = useDispatch();
+
+	const { icon, name, description, code } = game;
 	const navigate = useNavigate();
-	const handlePlayGame = () => navigate(routes.GAME.linkPath(name));
+	const handlePlayGame = () => {
+		dispatch(getGameToLaunch(code));
+		navigate(routes.GAME.linkPath(code));
+	};
 	return (
 		<div className="game-card ">
 			<div className="game-card__image-container">
