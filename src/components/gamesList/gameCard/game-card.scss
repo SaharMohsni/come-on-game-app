@@ -6,6 +6,21 @@
 	display: grid;
 	grid-template-columns: 15% 80%;
 	column-gap: 2%;
+	/* *** responsive design for medium screen *** */
+	@include respond(medium) {
+		min-height: 220px;
+	}
+	/* *** responsive design for small screen *** */
+	@include respond(small) {
+		grid-template-columns: 30% 68%;
+		min-height: 280px;
+	}
+	/* *** responsive design special breakpoint *** */
+	@media (min-width: 320px) and (max-width: 550px) {
+		display: flex;
+		flex-direction: column;
+		min-height: unset !important;
+	}
 	&__image-container {
 		width: 100%;
 		img {
@@ -17,6 +32,17 @@
 			&__name {
 				font-weight: 700;
 				@include fontSize(22px);
+				/* *** responsive design special breakpoint *** */
+				@media (min-width: 320px) and (max-width: 550px) {
+					margin-top: 10px;
+					@include fontSize(18px);
+				}
+			}
+		}
+		&__play-button {
+			/* *** responsive design special breakpoint *** */
+			@media (min-width: 320px) and (max-width: 550px) {
+				margin-top: 10px;
 			}
 		}
 	}

@@ -18,7 +18,7 @@ const GameCard = ({ game }) => {
 			<div className="game-card__details global-flex-column-h-any-v-between">
 				<div className="game-card__details__data">
 					<div className="game-card__details__data__name">{name}</div>
-					<div className="game-card__details__data__description">{description}</div>
+					<p className="game-card__details__data__description">{description}</p>
 				</div>
 
 				<div className="game-card__details__play-button global-button global-flex-h-end-v-any">
@@ -32,7 +32,7 @@ const GameCard = ({ game }) => {
 };
 GameCard.propTypes = {
 	/**
-     * Current Profile
+     * Game
      */
 	game: PropTypes.object.isRequired
 };
