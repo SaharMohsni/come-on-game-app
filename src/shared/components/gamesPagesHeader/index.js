@@ -1,14 +1,21 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { Avatar, Button } from 'antd';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { LeftOutlined } from '@ant-design/icons';
 import './games-pages-header.scss';
 
-import { selectUserInfo } from '../../../features/selectors/profile.selectors';
+import { selectUserInfo, selectPlayerUserName } from '../../../features/selectors/profile.selectors';
 import { isEmpty } from 'lodash';
+import { logoutUser } from '../../../features/actions/profile.actions';
 const GamesPagesHeader = () => {
+	const dispatch = useDispatch();
 	const playerInfo = useSelector(selectUserInfo);
+	const userName = useSelector(selectPlayerUserName);
+
+	const handleLogOut = () => {
+		dispatch(logoutUser({ username: userName }));
+	};
 	const renderPageContent = () => {
 		if (!isEmpty(playerInfo)) {
 			return (
@@ -35,7 +42,9 @@ const GamesPagesHeader = () => {
 						</div>
 					</div>
 					<div className="games-pages-header__logout-button global-button">
-						<Button icon={<LeftOutlined />}>Log out</Button>
+						<Button icon={<LeftOutlined />} onClick={() => handleLogOut()}>
+							Log out
+						</Button>
 					</div>
 				</div>
 			);

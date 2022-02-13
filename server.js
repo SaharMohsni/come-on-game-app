@@ -57,7 +57,8 @@ server.post('/login', (req, res) => {
 	res.status(200).json({
 		status: 'success',
 		access_token,
-		player
+		player,
+		username
 	});
 });
 
@@ -83,6 +84,7 @@ server.post('/connected-player', (req, res) => {
 	if (player) {
 		res.status(200).json({
 			status: 'success',
+			username,
 			player
 		});
 		return;

@@ -11,6 +11,7 @@ import ActionTypes from '../constants/profile.constants';
 
 const initialLocal = {
 	isSignedIn: hasToken(),
+	userName: '',
 	loading: {
 		loginLoading: false,
 		logoutLoading: false,
@@ -44,6 +45,7 @@ const profileReducer = (state = initialState, action) =>
 				localStorage.setItem('token', action.data.access_token);
 				draft.local.isSignedIn = true;
 				draft.data.userInfo = action.data.player;
+				draft.local.userName = action.data.username;
 				window.location = setUrlPath(window.location.href, '/games-list');
 				break;
 			case ActionTypes.LOGIN_USER.failure:
@@ -51,23 +53,23 @@ const profileReducer = (state = initialState, action) =>
 				draft.local.errors.loginErrors = action.e.response.data.error;
 				break;
 
-			//Logout
-			// case ActionTypes.LOGOUT_USER.request:
-			// 	draft.local.loading.logoutLoading = true;
-			// 	draft.local.errors.logoutErrors = "";
-			// 	break;
-			// case ActionTypes.LOGOUT_USER.success:
-			// 	draft.local.loading.logoutLoading = false;
-			// 	 localStorage.removeItem('token');
-			// 	window.location = setUrlPath(window.location.href, '/');
+			// Logout
+			case ActionTypes.LOGOUT_USER.request:
+				draft.local.loading.logoutLoading = true;
+				draft.local.errors.logoutErrors = '';
+				break;
+			case ActionTypes.LOGOUT_USER.success:
+				draft.local.loading.logoutLoading = false;
+				localStorage.removeItem('token');
+				window.location = setUrlPath(window.location.href, '/');
 
-			// 	draft.local.isSignedIn = false;
-			// 	draft.data.userInfo = {};
-			// 	break;
-			// case ActionTypes.LOGOUT_USER.failure:
-			// 	draft.local.loading.logoutLoading = false;
-			// 	draft.local.errors.logoutErrors = action.e.response.data.error;
-			// 	break;
+				draft.local.isSignedIn = false;
+				draft.data.userInfo = {};
+				break;
+			case ActionTypes.LOGOUT_USER.failure:
+				draft.local.loading.logoutLoading = false;
+				draft.local.errors.logoutErrors = action.e.response.data.error;
+				break;
 
 			case ActionTypes.CLEAR_LOGIN_FORM_ERRORS.success:
 				draft.local.errors.loginErrors = '';
@@ -80,6 +82,8 @@ const profileReducer = (state = initialState, action) =>
 			case ActionTypes.GET_PLAYER_DATA_FROM_TOKEN.success:
 				draft.local.loading.getPlayerDataFromTokenLoading = false;
 				draft.data.userInfo = action.data.player;
+				draft.local.userName = action.data.username;
+
 				break;
 			case ActionTypes.GET_PLAYER_DATA_FROM_TOKEN.failure:
 				draft.local.loading.getPlayerDataFromTokenLoading = false;

@@ -20,9 +20,9 @@ export function* loginUserWatcher() {
 }
 
 //logout
-export function* logoutUser() {
+export function* logoutUser(action) {
 	try {
-		const results = yield call(api.logoutUser);
+		const results = yield call(api.logoutUser, action.payload);
 		yield put({
 			type: ActionTypes.LOGOUT_USER.success,
 			data: results
