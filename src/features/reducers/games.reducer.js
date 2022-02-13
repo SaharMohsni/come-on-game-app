@@ -9,17 +9,20 @@ import ActionTypes from '../constants/games.constants';
 
 const initialLocal = {
 	loading: {
-		fetchGamesLoading: false
+		fetchGamesLoading: false,
+		fetchCategoriesLoading: false
 	},
 	errors: {
-		fetchGamesErrors: ''
+		fetchGamesErrors: '',
+		fetchCategoriesErrors: ''
 	}
 };
 
 export const initialState = {
 	local: initialLocal,
 	data: {
-		gamesList: []
+		gamesList: [],
+		categoriesList: []
 	}
 };
 
@@ -30,7 +33,7 @@ const gamesReducer = (state = initialState, action) =>
 			//Fetch games
 			case ActionTypes.FETCH_GAMES.request:
 				draft.local.loading.fetchGamesLoading = true;
-				draft.local.errors.fetchGamesLoading = '';
+				draft.local.errors.fetchGamesErrors = '';
 				break;
 			case ActionTypes.FETCH_GAMES.success:
 				draft.local.loading.fetchGamesLoading = false;
@@ -38,7 +41,20 @@ const gamesReducer = (state = initialState, action) =>
 				break;
 			case ActionTypes.FETCH_GAMES.failure:
 				draft.local.loading.fetchGamesLoading = false;
-				draft.local.errors.fetchGamesLoading = action.e.response.data.error;
+				draft.local.errors.fetchGamesErrors = action.e.response.data.error;
+				break;
+			//Fetch categories
+			case ActionTypes.FETCH_CATEGORIES.request:
+				draft.local.loading.fetchCategoriesLoading = true;
+				draft.local.errors.fetchCategoriesErrors = '';
+				break;
+			case ActionTypes.FETCH_CATEGORIES.success:
+				draft.local.loading.fetchCategoriesLoading = false;
+				draft.data.categoriesList = action.data;
+				break;
+			case ActionTypes.FETCH_CATEGORIES.failure:
+				draft.local.loading.fetchCategoriesLoading = false;
+				draft.local.errors.fetchCategoriesErrors = action.e.response.data.error;
 				break;
 		}
 	});

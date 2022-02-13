@@ -1,8 +1,27 @@
 @import '../../app/_mixins';
 .games-list {
 	margin-top: 50px;
-	&__title {
-		font-weight: 700;
-		margin-bottom: 0 !important;
+	display: grid;
+	grid-template-columns: 80% 18%;
+	column-gap: 2%;
+	&__data {
+		&__title {
+			font-weight: 700;
+			margin-bottom: 0 !important;
+		}
+	}
+	&__filter-section {
+		&__title {
+			font-weight: 700;
+			margin-bottom: 0 !important;
+		}
+		&__content {
+			border-top: solid 1px rgb(212, 203, 203);
+			&__filter-element {
+				font-weight: bolder;
+				@include fontSize(23px);
+				cursor: pointer;
+			}
+		}
 	}
 }

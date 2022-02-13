@@ -14,7 +14,8 @@ const URL = {
 		getConnectedPlayer: '/connected-player'
 	},
 	games: {
-		fetchGames: () => `/games`
+		fetchGames: () => `/games`,
+		fetchCategories: () => `/categories `
 	}
 };
 export default URL;

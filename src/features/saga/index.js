@@ -2,7 +2,7 @@
  * Combine  Sagas  watcher
  */
 import { all } from 'redux-saga/effects';
-import { fetchGamesWatcher } from './games.saga';
+import { fetchGamesWatcher, fetchCategoriesWatcher } from './games.saga';
 import {
 	clearLoginFormErrorsWatcher,
 	clearReducerLocalWatcher,
@@ -19,6 +19,7 @@ export default function* rootSaga() {
 		clearLoginFormErrorsWatcher(),
 		getPlayerDataFromTokenWatcher(),
 		clearReducerLocalWatcher(),
-		fetchGamesWatcher()
+		fetchGamesWatcher(),
+		fetchCategoriesWatcher()
 	]);
 }

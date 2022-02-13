@@ -9,6 +9,7 @@ import routes from './routes';
 import { setUrlPath } from '../../utils/url.helper';
 import { decryptToken } from '../../utils/localStorage.helper';
 import { getPlayerDataFromToken } from '../../features/actions/profile.actions';
+import { fetchCategories, fetchGames } from '../../features/actions/games.actions';
 
 const PrivateRoutes = () => {
 	const dispatch = useDispatch();
@@ -22,6 +23,8 @@ const PrivateRoutes = () => {
 		} catch (error) {
 			localStorage.removeItem('token');
 		}
+		dispatch(fetchGames());
+		dispatch(fetchCategories());
 	}, []);
 
 	return (

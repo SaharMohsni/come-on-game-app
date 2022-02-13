@@ -6,3 +6,8 @@ export const fetchGames = async () => {
 	const result = await axios.get(URL.baseApiUrl() + URL.games.fetchGames(), requestHeader({}));
 	return result.data;
 };
+
+export const fetchCategories = async () => {
+	const result = await axios.get(URL.baseApiUrl() + URL.games.fetchCategories(), requestHeader({}));
+	return result.data;
+};
