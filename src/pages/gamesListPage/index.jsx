@@ -37,7 +37,7 @@ const GameListPage = () => {
 	};
 
 	return (
-		<div className="game-list-page-container">
+		<div className="game-list-page-container global-page-css">
 			<GamesPagesHeader setFilterBy={setFilterByGameName} />
 			<GamesList
 				gamesList={filterGamesList()}

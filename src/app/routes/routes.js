@@ -1,6 +1,6 @@
 import Authentication from '../../pages/authentication';
 import GamesList from '../../pages/gamesListPage';
-import Game from '../../pages/gamePage';
+import GamePage from '../../pages/gamePage';
 export default {
 	LOGIN_OR_REGISTER: {
 		path: '/',
@@ -11,8 +11,8 @@ export default {
 		component: GamesList
 	},
 	GAME: {
-		path: '/games-list/:id',
-		linkPath: (gameId) => `/games-list/${gameId}`,
-		component: Game
+		path: '/games-list/:name',
+		linkPath: (name) => `/games-list/${name}`,
+		component: GamePage
 	}
 };

@@ -6,10 +6,11 @@ import { RightOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
 import './game-card.scss';
+import routes from '../../../app/routes/routes';
 const GameCard = ({ game }) => {
 	const { icon, name, description } = game;
 	const navigate = useNavigate();
-	const handlePlayGame = () => navigate(`/game-list/${name}`);
+	const handlePlayGame = () => navigate(routes.GAME.linkPath(name));
 	return (
 		<div className="game-card ">
 			<div className="game-card__image-container">

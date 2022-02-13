@@ -177,3 +177,11 @@ body {
 		@include fontSize(16px);
 	}
 }
+.global-page-css {
+	font-family: sans-serif !important;
+	width: 80%;
+	background-color: white;
+	margin: 0 9%;
+	padding: 30px;
+	min-height: calc(100vh - 255px);
+}

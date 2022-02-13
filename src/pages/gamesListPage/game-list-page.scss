@@ -1,12 +1,6 @@
 @import '../../app/_mixins';
 
 .game-list-page-container {
-	font-family: sans-serif !important;
-	width: 80%;
-	background-color: white;
-	margin: 0 9%;
-	padding: 30px;
-	min-height: calc(100vh - 255px);
 	/* *** responsive design for small screen *** */
 	@include respond(small) {
 		min-height: calc(100vh - 150px);
