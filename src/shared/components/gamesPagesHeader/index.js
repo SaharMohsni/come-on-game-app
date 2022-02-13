@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { Avatar, Button } from 'antd';
+import { Avatar, Button, Input } from 'antd';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { LeftOutlined } from '@ant-design/icons';
 import './games-pages-header.scss';
@@ -8,6 +9,9 @@ import './games-pages-header.scss';
 import { selectUserInfo, selectPlayerUserName } from '../../../features/selectors/profile.selectors';
 import { isEmpty } from 'lodash';
 import { logoutUser } from '../../../features/actions/profile.actions';
+
+const { Search } = Input;
+
 const GamesPagesHeader = () => {
 	const dispatch = useDispatch();
 	const playerInfo = useSelector(selectUserInfo);
@@ -16,6 +20,7 @@ const GamesPagesHeader = () => {
 	const handleLogOut = () => {
 		dispatch(logoutUser({ username: userName }));
 	};
+	const onSearch = (value) => console.log(value);
 	const renderPageContent = () => {
 		if (!isEmpty(playerInfo)) {
 			return (
@@ -51,6 +56,13 @@ const GamesPagesHeader = () => {
 		}
 		return <div />;
 	};
-	return <div className="games-pages-header">{renderPageContent()}</div>;
+	return (
+		<div className="games-pages-header global-flex-h-between-v-start">
+			<div>{renderPageContent()}</div>
+			<div>
+				<Search placeholder="input search text" onSearch={onSearch} style={{ width: 200 }} />
+			</div>
+		</div>
+	);
 };
 export default GamesPagesHeader;
