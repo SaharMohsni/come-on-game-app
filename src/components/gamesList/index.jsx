@@ -16,10 +16,10 @@ const GamesList = ({ gamesList, categoriesList, setFilterBy }) => {
 
 	return (
 		<div className="games-list">
-			<div className="games-list__data">
-				<h1 className="games-list__data__title">Games</h1>
+			<div className="games-list__data twelve wide column">
+				<h3 className="ui dividing header">Games</h3>
 				<div
-					className={`games-list__data__content ${!isEmpty(gamesList)
+					className={`games-list__data__content ui relaxed divided game items links ${!isEmpty(gamesList)
 						? 'global-flex-column-h-start-v-start'
 						: 'global-flex-h-center-v-any'}`}
 				>

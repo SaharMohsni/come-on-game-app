@@ -3,8 +3,10 @@
 .game-page {
 	&__launched-game {
 		margin-top: 50px;
-		border: solid;
 		min-height: 500px;
+		iframe {
+			width: 100%;
+		}
 	}
 	&__details {
 		&__name {

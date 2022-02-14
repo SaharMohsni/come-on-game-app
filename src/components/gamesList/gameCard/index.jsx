@@ -19,15 +19,15 @@ const GameCard = ({ game }) => {
 		navigate(routes.GAME.linkPath(code));
 	};
 	return (
-		<div className="game-card ">
-			<div className="game-card__image-container">
+		<div className="game item">
+			<div className="ui small image">
 				<img src={require(`../../../assets/${icon}`)} alt="game-image" />
 			</div>
-			<div className="game-card__details global-flex-column-h-any-v-between">
-				<div className="game-card__details__data">
-					<div className="game-card__details__data__name">{name}</div>
-					<p className="game-card__details__data__description">{description}</p>
+			<div className="content">
+				<div className="header">
+					<b className="name">{name}</b>
 				</div>
+				<div className="description">{description}</div>
 
 				<div className="game-card__details__play-button global-button global-flex-h-end-v-any">
 					<Button onClick={() => handlePlayGame()}>

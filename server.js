@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-const fs = require('fs');
 const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('./db.json');
@@ -18,6 +17,7 @@ const players = playersDb.players;
 const SECRET_KEY = '123456789';
 const expiresIn = '5h'; // token expiration delay
 
+/************************* Games APIs  ***************************/
 // Games List
 server.get('/games', (req, res) => {
 	res.jsonp(games);
@@ -29,6 +29,8 @@ server.get('/categories', (req, res) => {
 });
 
 /////////////////////////////////////////////
+
+/************************* Players APIs  ***************************/
 
 // Create a token from a payload
 function createToken(payload) {
@@ -95,6 +97,7 @@ server.post('/connected-player', (req, res) => {
 	});
 });
 
+/////////////////////////////////////////////
 server.use(router);
 server.listen(3001, () => {
 	console.log('JSON Server is running');

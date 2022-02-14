@@ -11,9 +11,3 @@ export const fetchCategories = async () => {
 	const result = await axios.get(URL.baseApiUrl() + URL.games.fetchCategories(), requestHeader({}));
 	return result.data;
 };
-
-export const loadGame = async (gameName) => {
-	const result = await axios.get(`comeon.game.launch(${gameName})`);
-
-	return result.data;
-};

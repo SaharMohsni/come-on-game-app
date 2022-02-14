@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { Avatar, Button, Input } from 'antd';
+import { Button, Input } from 'antd';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { LeftOutlined, SearchOutlined } from '@ant-design/icons';
@@ -23,24 +23,19 @@ const GamesPagesHeader = ({ setFilterBy }) => {
 		if (!isEmpty(playerInfo)) {
 			return (
 				<div>
-					<div className="games-pages-header__data-container global-flex-h-start-v-center">
-						<Avatar
-							size={{
-								xs: 40,
-								sm: 40,
-								md: 40,
-								lg: 64,
-								xl: 64,
-								xxl: 64
-							}}
-							src={require(`../../../assets/${playerInfo.avatar}`)}
-						/>
-						<div className="games-pages-header__data-container__player-details">
-							<div className="games-pages-header__data-container__player-details__username">
-								{playerInfo.name}
-							</div>
-							<div className="games-pages-header__data-container__player-details__last-event">
-								{playerInfo.event}
+					<div className="ui list games-pages-header__data-container global-flex-h-start-v-center">
+						<div className="player item">
+							<img
+								className="ui avatar image"
+								src={require(`../../../assets/${playerInfo.avatar}`)}
+								alt="avatar"
+							/>
+
+							<div className="content">
+								<div className="header">
+									<b className="name"> {playerInfo.name}</b>
+								</div>
+								<div className="description event">{playerInfo.event}</div>
 							</div>
 						</div>
 					</div>

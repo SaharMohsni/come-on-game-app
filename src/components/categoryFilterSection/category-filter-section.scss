@@ -2,36 +2,13 @@
 
 .category-filter-section {
 	&__filter-section {
-		&__title {
-			font-weight: 700;
-			margin-bottom: 0 !important;
-			/* *** responsive design for large screen *** */
-			@include respond(large) {
-				@include fontSize(25px);
-			}
-			/* *** responsive design for medium screen *** */
-			@include respond(medium) {
-				@include fontSize(28px);
-			}
-			/* *** responsive design for small screen *** */
-			@include respond(small) {
-				@include fontSize(25px);
-			}
-			/* *** responsive design special breakpoint *** */
-			@media (min-width: 320px) and (max-width: 550px) {
-				@include fontSize(20px);
-			}
-		}
 		&__content {
-			padding: 20px 0;
-			height: 100%;
-			border-top: solid 1px rgb(212, 203, 203);
 			/* *** responsive design for small screen *** */
 			@include respond(small) {
-				display: flex;
-				overflow-x: scroll;
-				scrollbar-color: rgb(104, 172, 3) transparent;
-				scrollbar-width: thin;
+				display: flex !important;
+				overflow-x: scroll !important;
+				scrollbar-color: rgb(104, 172, 3) transparent !important;
+				scrollbar-width: thin !important;
 				padding: 0;
 				&::-webkit-scrollbar {
 					width: 5px;
@@ -47,29 +24,18 @@
 				}
 			}
 			&__filter-element {
-				font-weight: bolder;
-				@include fontSize(23px);
-				cursor: pointer;
-				/* *** responsive design for large screen *** */
-				@include respond(large) {
-					@include fontSize(20px);
-				}
-				/* *** responsive design for medium screen *** */
-				@include respond(medium) {
-					@include fontSize(20px);
-				}
 				/* *** responsive design for small screen *** */
 				@include respond(small) {
-					@include fontSize(18px);
-					margin: 20px 10px;
-					color: white;
-					background-color: rgb(104, 172, 3);
-					padding: 5px;
+					@include fontSize(18px !important);
+					margin: 20px 10px !important;
+					color: white !important;
+					background-color: rgb(104, 172, 3) !important;
+					padding: 5px !important;
 				}
 				/* *** responsive design special breakpoint *** */
 
 				@media (min-width: 320px) and (max-width: 550px) {
-					@include fontSize(10px);
+					@include fontSize(10px );
 				}
 			}
 			&__filter-element:first-child {
@@ -79,5 +45,24 @@
 				}
 			}
 		}
+	}
+}
+.ui.items > .item {
+	/* *** responsive design for small screen *** */
+	@include respond(small) {
+		min-width: 100px !important;
+		border-radius: 5px !important;
+	}
+}
+
+.ui.items > .item > .content {
+	/* *** responsive design for small screen *** */
+	@include respond(small) {
+		@include fontSize(18px);
+	}
+	/* *** responsive design special breakpoint *** */
+
+	@media (min-width: 320px) and (max-width: 550px) {
+		@include fontSize(10px);
 	}
 }
