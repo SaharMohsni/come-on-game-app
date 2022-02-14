@@ -1,14 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 import LoginForm from '../../components/authentication/LoginForm';
-import './authentication.scss'
+import { selectSignedInStatus } from '../../features/selectors/profile.selectors';
+import './authentication.scss';
 
 const Authentication = () => {
-    return (
+	const isSigned = useSelector(selectSignedInStatus);
+	return (
 		<div className="authentication global-flex-h-center-v-center">
-			<LoginForm />
+			{isSigned ? <Navigate to="/games-list" /> : <LoginForm />}
 		</div>
 	);
-}
+};
 
-
-export default Authentication
+export default Authentication;

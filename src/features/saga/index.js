@@ -5,7 +5,6 @@ import { all } from 'redux-saga/effects';
 import { fetchGamesWatcher, fetchCategoriesWatcher, getGameToLaunchWatcher } from './games.saga';
 import {
 	clearLoginFormErrorsWatcher,
-	clearReducerLocalWatcher,
 	getPlayerDataFromTokenWatcher,
 	loginUserWatcher,
 	logoutUserWatcher
@@ -18,7 +17,6 @@ export default function* rootSaga() {
 		logoutUserWatcher(),
 		clearLoginFormErrorsWatcher(),
 		getPlayerDataFromTokenWatcher(),
-		clearReducerLocalWatcher(),
 		fetchGamesWatcher(),
 		fetchCategoriesWatcher(),
 		getGameToLaunchWatcher()

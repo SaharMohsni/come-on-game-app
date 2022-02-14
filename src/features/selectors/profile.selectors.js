@@ -9,5 +9,4 @@ export const selectLoginErrors = createSelector(
 );
 
 export const selectUserInfo = createSelector((state) => state.profile, (profile) => profile.data.userInfo);
-export const selectPlayerUserName = createSelector((state) => state.profile, (profile) => profile.local.userName);
 export const selectSignedInStatus = createSelector((state) => state.profile, (profile) => profile.local.isSignedIn);

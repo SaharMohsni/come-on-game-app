@@ -6,17 +6,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { LeftOutlined, SearchOutlined } from '@ant-design/icons';
 import './games-pages-header.scss';
 
-import { selectUserInfo, selectPlayerUserName } from '../../../features/selectors/profile.selectors';
+import { selectUserInfo } from '../../../features/selectors/profile.selectors';
 import { isEmpty } from 'lodash';
 import { logoutUser } from '../../../features/actions/profile.actions';
 
 const GamesPagesHeader = ({ setFilterBy }) => {
 	const dispatch = useDispatch();
 	const playerInfo = useSelector(selectUserInfo);
-	const userName = useSelector(selectPlayerUserName);
 
 	const handleLogOut = () => {
-		dispatch(logoutUser({ username: userName }));
+		if (!isEmpty(playerInfo)) {
+			dispatch(logoutUser({ username: playerInfo.username }));
+		}
 	};
 	const onSearch = (e) => setFilterBy(e.target.value);
 	const renderPageContent = () => {

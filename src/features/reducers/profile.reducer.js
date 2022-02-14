@@ -6,12 +6,10 @@
  */
 import produce from 'immer';
 import { hasToken } from '../../utils/access-token';
-import { setUrlPath } from '../../utils/url.helper';
 import ActionTypes from '../constants/profile.constants';
 
 const initialLocal = {
 	isSignedIn: hasToken(),
-	userName: '',
 	loading: {
 		loginLoading: false,
 		logoutLoading: false,
@@ -44,13 +42,11 @@ const profileReducer = (state = initialState, action) =>
 				draft.local.loading.loginLoading = false;
 				localStorage.setItem('token', action.data.access_token);
 				draft.local.isSignedIn = true;
-				draft.data.userInfo = action.data.player;
-				draft.local.userName = action.data.username;
-				window.location = setUrlPath(window.location.href, '/games-list');
+				draft.data.userInfo = { ...action.data.player, username: action.data.username };
 				break;
 			case ActionTypes.LOGIN_USER.failure:
 				draft.local.loading.loginLoading = false;
-				draft.local.errors.loginErrors = action.e.response.data.error;
+				draft.local.errors.loginErrors = action.error;
 				break;
 
 			// Logout
@@ -61,14 +57,13 @@ const profileReducer = (state = initialState, action) =>
 			case ActionTypes.LOGOUT_USER.success:
 				draft.local.loading.logoutLoading = false;
 				localStorage.removeItem('token');
-				window.location = setUrlPath(window.location.href, '/');
 
 				draft.local.isSignedIn = false;
 				draft.data.userInfo = {};
 				break;
 			case ActionTypes.LOGOUT_USER.failure:
 				draft.local.loading.logoutLoading = false;
-				draft.local.errors.logoutErrors = action.e.response.data.error;
+				draft.local.errors.logoutErrors = action.error;
 				break;
 
 			case ActionTypes.CLEAR_LOGIN_FORM_ERRORS.success:
@@ -81,19 +76,13 @@ const profileReducer = (state = initialState, action) =>
 				break;
 			case ActionTypes.GET_PLAYER_DATA_FROM_TOKEN.success:
 				draft.local.loading.getPlayerDataFromTokenLoading = false;
-				draft.data.userInfo = action.data.player;
-				draft.local.userName = action.data.username;
+				draft.data.userInfo = { ...action.data.player, username: action.data.username };
 
 				break;
 			case ActionTypes.GET_PLAYER_DATA_FROM_TOKEN.failure:
 				draft.local.loading.getPlayerDataFromTokenLoading = false;
-				draft.local.errors.getPlayerDataFromTokenErrors = action.e.response.data.error;
+				draft.local.errors.getPlayerDataFromTokenErrors = action.error;
 				break;
-
-			//Clear reducer
-			// case ActionTypes.CLEAR_REDUCER_LOCAL.success:
-			// 	draft.local = initialLocal;
-			// 	break;
 		}
 	});
 

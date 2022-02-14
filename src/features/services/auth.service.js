@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { decryptToken } from '../../utils/localStorage.helper';
 import { requestHeader, requestHeaderWithoutToken } from '../../utils/requestHeader';
 import URL from '../constants/service.constants';
 
@@ -13,7 +14,13 @@ export const logoutUser = async (body) => {
 	});
 	return result.data;
 };
-export const getPlayerDataFromToken = async (body) => {
-	const result = await axios.post(URL.baseApiUrl() + URL.player.getConnectedPlayer, { ...body }, requestHeader({}));
+export const getPlayerDataFromToken = async () => {
+	const playerUsername = decryptToken(localStorage.getItem('token')).username;
+
+	const result = await axios.post(
+		URL.baseApiUrl() + URL.player.getConnectedPlayer,
+		{ username: playerUsername },
+		requestHeader({})
+	);
 	return result.data;
 };

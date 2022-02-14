@@ -11,7 +11,7 @@ export function* loginUser(action) {
 			data: results
 		});
 	} catch (e) {
-		yield put({ type: ActionTypes.LOGIN_USER.failure, e });
+		yield put({ type: ActionTypes.LOGIN_USER.failure, error: e.response.data.error });
 	}
 }
 
@@ -28,7 +28,7 @@ export function* logoutUser(action) {
 			data: results
 		});
 	} catch (e) {
-		yield put({ type: ActionTypes.LOGIN_USER.failure, e });
+		yield put({ type: ActionTypes.LOGIN_USER.failure, error: e.response.data.error });
 	}
 }
 
@@ -60,26 +60,10 @@ export function* getPlayerDataFromToken(action) {
 			data: results
 		});
 	} catch (e) {
-		yield put({ type: ActionTypes.GET_PLAYER_DATA_FROM_TOKEN.failure, e });
+		yield put({ type: ActionTypes.GET_PLAYER_DATA_FROM_TOKEN.failure, error: e.response.data.error });
 	}
 }
 
 export function* getPlayerDataFromTokenWatcher() {
 	yield takeEvery(ActionTypes.GET_PLAYER_DATA_FROM_TOKEN.request, getPlayerDataFromToken);
-}
-
-//Clear reducer local
-export function* clearReducerLocal(action) {
-	try {
-		yield put({
-			type: ActionTypes.CLEAR_REDUCER_LOCAL.success,
-			payload: action.payload
-		});
-	} catch (e) {
-		yield put({ type: ActionTypes.CLEAR_REDUCER_LOCAL.failure, e });
-	}
-}
-
-export function* clearReducerLocalWatcher() {
-	yield takeEvery(ActionTypes.CLEAR_REDUCER_LOCAL.request, clearReducerLocal);
 }

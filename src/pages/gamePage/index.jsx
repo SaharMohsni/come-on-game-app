@@ -2,14 +2,20 @@ import React, { useEffect } from 'react';
 import { Button } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import routes from '../../app/routes/routes';
 import './game-page.scss';
 import { selectLaunchedGame } from '../../features/selectors/games.selectors';
+import { fetchGames } from '../../features/actions/games.actions';
 const GamePage = () => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const launchedGame = useSelector(selectLaunchedGame);
+
+	useEffect(() => {
+		dispatch(fetchGames());
+	}, []);
 
 	const handleGoBack = () => navigate(routes.GAMES_LIST.path);
 	window.comeon = window.comeon || {};

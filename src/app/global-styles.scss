@@ -189,3 +189,6 @@ body {
 		min-height: calc(100vh - 150px);
 	}
 }
+.global-required-field {
+	border: solid 1px red !important;
+}
