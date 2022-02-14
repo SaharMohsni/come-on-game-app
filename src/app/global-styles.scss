@@ -1,7 +1,7 @@
 @import './_mixins';
 
 body {
-	background-color: rgb(59, 58, 58);
+	background-color: #444;
 }
 .global-flex-h-any-v-center {
 	display: flex;
@@ -181,7 +181,11 @@ body {
 	font-family: sans-serif !important;
 	width: 80%;
 	background-color: white;
-	margin: 0 9%;
-	padding: 30px;
+	margin: 0 auto;
+	padding: 2em 2em 7em;
 	min-height: calc(100vh - 255px);
+	/* *** responsive design for small screen *** */
+	@include respond(small) {
+		min-height: calc(100vh - 150px);
+	}
 }

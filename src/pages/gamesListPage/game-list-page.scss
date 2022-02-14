@@ -1,8 +1,4 @@
 @import '../../app/_mixins';
 
 .game-list-page-container {
-	/* *** responsive design for small screen *** */
-	@include respond(small) {
-		min-height: calc(100vh - 150px);
-	}
 }
