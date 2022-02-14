@@ -5,6 +5,3 @@ export const setUrlPath = (url, path) => {
 	parsedUrl.set('pathname', path);
 	return parsedUrl.toString();
 };
-
-// get navigation pathname
-export const getURLCleanPath = (pathname) => pathname.split('/')[2];

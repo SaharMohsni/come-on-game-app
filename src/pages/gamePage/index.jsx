@@ -8,15 +8,13 @@ import { useSelector } from 'react-redux';
 import routes from '../../app/routes/routes';
 import './game-page.scss';
 import { selectLaunchedGame } from '../../features/selectors/games.selectors';
-// import { getURLCleanPath } from '../../utils/url.helper';
 const GamePage = () => {
 	const navigate = useNavigate();
-	// const location = useLocation();
 	const launchedGame = useSelector(selectLaunchedGame);
 
 	const handleGoBack = () => navigate(routes.GAMES_LIST.path);
 
-	// const game = loadGame(getURLCleanPath(location.pathname));
+	// const game = loadGame(getURLCleanPath(launchedGame.code));
 	return (
 		<div className="game-page global-page-css ">
 			<div className="global-button">
