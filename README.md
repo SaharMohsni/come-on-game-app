@@ -59,7 +59,7 @@ At the end of the project, the technologies implemented was Javascript, React, R
 For the back-end part i used json-server.
 
 
-In the next iteration the front-end part could be optimized on different devices and the application will became better after adding some other features like registration, forgot password and others.
+In the next iteration the front-end part could be optimized on different devices and the application will became better after adding first loading and some other features like registration, forgot password and others.
 
 Adding unit test is needed to make sure all the project is working without problems.
 
