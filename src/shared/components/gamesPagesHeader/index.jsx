@@ -4,22 +4,26 @@ import { Button, Input } from 'antd';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { LeftOutlined, SearchOutlined } from '@ant-design/icons';
+import { isEmpty } from 'lodash';
+import { useLocation } from 'react-router-dom';
+
 import './games-pages-header.scss';
 
 import { selectUserInfo } from '../../../features/selectors/profile.selectors';
-import { isEmpty } from 'lodash';
 import { logoutUser } from '../../../features/actions/profile.actions';
+import routes from '../../../app/routes/routes';
 
 const GamesPagesHeader = ({ setFilterBy }) => {
 	const dispatch = useDispatch();
 	const playerInfo = useSelector(selectUserInfo);
-
+	const location = useLocation();
 	const handleLogOut = () => {
 		if (!isEmpty(playerInfo)) {
 			dispatch(logoutUser({ username: playerInfo.username }));
 		}
 	};
 	const onSearch = (e) => setFilterBy(e.target.value);
+
 	const renderPageContent = () => {
 		if (!isEmpty(playerInfo)) {
 			return (
@@ -50,12 +54,20 @@ const GamesPagesHeader = ({ setFilterBy }) => {
 		}
 		return <div />;
 	};
+
+	const renderInputSearch = () => {
+		if (location.pathname === routes.GAMES_LIST.path) {
+			return (
+				<div className="games-pages-header__filter-by-search">
+					<Input placeholder="Search Game" suffix={<SearchOutlined />} onChange={(e) => onSearch(e)} />
+				</div>
+			);
+		}
+	};
 	return (
 		<div className="games-pages-header global-flex-h-between-v-start">
 			{renderPageContent()}
-			<div className="games-pages-header__filter-by-search">
-				<Input placeholder="Search Game" suffix={<SearchOutlined />} onChange={(e) => onSearch(e)} />
-			</div>
+			{renderInputSearch()}
 		</div>
 	);
 };
@@ -63,6 +75,6 @@ GamesPagesHeader.propTypes = {
 	/**
      * Get category filter data
      */
-	setFilterBy: PropTypes.func.isRequired
+	setFilterBy: PropTypes.func
 };
 export default GamesPagesHeader;

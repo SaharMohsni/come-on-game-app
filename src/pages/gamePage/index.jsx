@@ -8,6 +8,7 @@ import routes from '../../app/routes/routes';
 import './game-page.scss';
 import { selectLaunchedGame } from '../../features/selectors/games.selectors';
 import { fetchGames } from '../../features/actions/games.actions';
+import GamesPagesHeader from '../../shared/components/gamesPagesHeader';
 const GamePage = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -26,6 +27,10 @@ const GamePage = () => {
 
 	return (
 		<div className="game-page global-page-css ">
+			<div className="game-page__header">
+				<GamesPagesHeader />
+			</div>
+
 			<div className="global-button">
 				<Button icon={<LeftOutlined />} onClick={() => handleGoBack()}>
 					Back to games list
