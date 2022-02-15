@@ -12,11 +12,13 @@ const initialLocal = {
 	launchedGame: {},
 	loading: {
 		fetchGamesLoading: false,
-		fetchCategoriesLoading: false
+		fetchCategoriesLoading: false,
+		getGameToLaunchLoading: false
 	},
 	errors: {
 		fetchGamesErrors: '',
-		fetchCategoriesErrors: ''
+		fetchCategoriesErrors: '',
+		getGameToLaunchErrors: ''
 	}
 };
 
@@ -59,9 +61,18 @@ const gamesReducer = (state = initialState, action) =>
 				draft.local.errors.fetchCategoriesErrors = action.e.response.data.error;
 				break;
 			//Get game to launch
+
+			case ActionTypes.GET_GAME_TO_LAUNCH.request:
+				draft.local.loading.getGameToLaunchLoading = true;
+				draft.local.errors.getGameToLaunchErrors = '';
+				break;
 			case ActionTypes.GET_GAME_TO_LAUNCH.success:
-				draft.local.loading.fetchCategoriesLoading = false;
+				draft.local.loading.getGameToLaunchLoading = false;
 				draft.local.launchedGame = getGameToLaunchData(state.data.gamesList, action.payload);
+				break;
+			case ActionTypes.GET_GAME_TO_LAUNCH.failure:
+				draft.local.loading.getGameToLaunchLoading = false;
+				draft.local.errors.getGameToLaunchErrors = action.e.response.data.error;
 				break;
 		}
 	});

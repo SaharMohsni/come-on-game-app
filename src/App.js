@@ -19,7 +19,6 @@ function App() {
 	const dispatch = useDispatch();
 	const isSigned = useSelector(selectSignedInStatus);
 
-	// let token = localStorage.getItem('token');
 	useEffect(
 		() => {
 			if (isSigned) {
