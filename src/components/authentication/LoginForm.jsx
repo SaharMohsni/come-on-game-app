@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { UserOutlined, LockOutlined, RightOutlined, QuestionCircleOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, RightOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import './login-form.scss';
 import { clearLoginFormErrors, loginUser } from '../../features/actions/profile.actions';
 import { selectLoginErrors } from '../../features/selectors/profile.selectors';
@@ -28,7 +28,7 @@ const LoginForm = () => {
 		<div className="login-form-container global-flex-column-h-center-v-center ">
 			{!isEmpty(loginErrors) && (
 				<div className="error-message">
-					<QuestionCircleOutlined />
+					<InfoCircleOutlined />
 					<span className="error-message__content">{loginErrors}</span>
 				</div>
 			)}

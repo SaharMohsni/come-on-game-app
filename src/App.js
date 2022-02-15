@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Routes, Route } from 'react-router-dom';
 import './App.scss';
@@ -11,18 +12,21 @@ import GameListPage from './pages/gamesListPage';
 import Layout from './app/Layout';
 import { getPlayerDataFromToken } from './features/actions/profile.actions';
 import PrivateRoute from './components/routes/PrivateRoute';
+import ErrorPage from './shared/components/errorPage';
+import { selectSignedInStatus } from './features/selectors/profile.selectors';
 
 function App() {
 	const dispatch = useDispatch();
+	const isSigned = useSelector(selectSignedInStatus);
 
-	let token = localStorage.getItem('token');
+	// let token = localStorage.getItem('token');
 	useEffect(
 		() => {
-			if (token) {
+			if (isSigned) {
 				dispatch(getPlayerDataFromToken());
 			}
 		},
-		[ token ]
+		[ isSigned ]
 	);
 	return (
 		<div className="app">
@@ -35,6 +39,7 @@ function App() {
 					<Route exact path={routes.GAME.path} element={<PrivateRoute />}>
 						<Route exact path={routes.GAME.path} element={<GamePage />} />
 					</Route>
+					<Route exact path={routes.ERRORS.path} element={<ErrorPage />} />
 				</Routes>
 			</Layout>
 		</div>

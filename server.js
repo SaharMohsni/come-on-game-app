@@ -94,7 +94,7 @@ server.post('/connected-player', (req, res) => {
 	}
 	res.status(400).json({
 		status: 'fail',
-		error: 'missing or invalid token'
+		error: 'missing or invalid username'
 	});
 });
 /////////////////////////////////////////////
