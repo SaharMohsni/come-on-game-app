@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './category-filter-section.scss';
 
-const CategoryFilterSection = ({ categoriesList, setFilterBy }) => {
+const CategoryFilterSection = ({ categoriesList, setFilterBy, filterByKey }) => {
 	// Filter by category function
 	const handleFilterByCategory = (categoryId) => {
 		setFilterBy(categoryId);
@@ -13,7 +13,8 @@ const CategoryFilterSection = ({ categoriesList, setFilterBy }) => {
 		return categoriesList.map((category) => {
 			return (
 				<div
-					className="category item category-filter-section__filter-section__content__filter-element"
+					className={`${filterByKey === category.id &&
+						'is-clicked'} category item category-filter-section__filter-section__content__filter-element`}
 					key={category.id}
 					onClick={() => handleFilterByCategory(category.id)}
 				>
@@ -41,7 +42,11 @@ CategoryFilterSection.propTypes = {
 	/**
      * Get category filter data
      */
-	setFilterBy: PropTypes.func.isRequired
+	setFilterBy: PropTypes.func,
+	/**
+     * filter key
+     */
+	filterByKey: PropTypes.string
 };
 
 export default CategoryFilterSection;

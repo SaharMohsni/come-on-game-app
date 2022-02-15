@@ -48,6 +48,7 @@ const GameListPage = () => {
 				gamesList={filterGamesList()}
 				categoriesList={categoriesList}
 				setFilterBy={setFilterByCategory}
+				filterByKey={FilterByCategory}
 			/>
 		</div>
 	);

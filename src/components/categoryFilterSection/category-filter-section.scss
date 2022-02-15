@@ -28,7 +28,6 @@
 				@include respond(small) {
 					@include fontSize(18px !important);
 					margin: 20px 10px !important;
-					color: white !important;
 					background-color: rgb(219, 213, 213) !important;
 					// background-color: rgb(104, 172, 3) !important;
 					padding: 5px !important;
@@ -37,6 +36,9 @@
 
 				@media (min-width: 320px) and (max-width: 550px) {
 					@include fontSize(10px );
+				}
+				&.is-clicked {
+					background-color: rgb(104, 172, 3) !important;
 				}
 			}
 			&__filter-element:first-child {
