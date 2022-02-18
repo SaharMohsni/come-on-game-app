@@ -13,7 +13,7 @@ import { selectUserInfo } from '../../../features/selectors/profile.selectors';
 import { logoutUser } from '../../../features/actions/profile.actions';
 import routes from '../../../app/routes/routes';
 
-const GamesPagesHeader = ({ setFilterBy }) => {
+const GamesPagesHeader = ({ setFilterByGameName }) => {
 	const dispatch = useDispatch();
 	const playerInfo = useSelector(selectUserInfo);
 	const location = useLocation();
@@ -22,7 +22,7 @@ const GamesPagesHeader = ({ setFilterBy }) => {
 			dispatch(logoutUser({ username: playerInfo.username }));
 		}
 	};
-	const onSearch = (e) => setFilterBy(e.target.value);
+	const onSearch = (e) => setFilterByGameName(e.target.value);
 
 	const renderPageContent = () => {
 		if (!isEmpty(playerInfo)) {
@@ -75,6 +75,6 @@ GamesPagesHeader.propTypes = {
 	/**
      * Get category filter data
      */
-	setFilterBy: PropTypes.func
+	setFilterByGameName: PropTypes.func
 };
 export default GamesPagesHeader;
